@@ -8,6 +8,9 @@ const start = () =>{
   bot.on("message", async (msg) => {
     const chatId = msg.chat.id;
 
+    if(text === "/start"){
+      await bot.sendMessage(chatId, "Hello there")
+    }
     const job = new CronJob('0 */10 * * * *', function() {
       return bot.sendMessage(chatId, "Test text ");
     });
