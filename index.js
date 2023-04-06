@@ -1,7 +1,8 @@
 const TelegramBot = require("node-telegram-bot-api");
+const CronJob = require('./node_modules/cron/lib/cron').CronJob;
 
 const token = "6092793681:AAGuTdwlrUJGMU_L5hsB_MV-RFrH5yN_0Xc";
-const CronJob = require('cron').CronJob;
+
 const bot = new TelegramBot(token, { polling: true });
 
 const start = () => {
@@ -12,11 +13,13 @@ const start = () => {
       await bot.sendMessage(chatId, "Hello there")
     }
 
-    const job = new CronJob('00 30 20 * * 0-6', function() {
+
+    const job = new CronJob('00 24 21 5 * *', function() {
       return bot.sendMessage(chatId, "Test text ");
     });
+    
     job.start();
-
+    
   });
 }
 
